@@ -826,6 +826,7 @@ class Matches extends RestController
                     'ball_id' => $batsman_score->ball_id,
                     'runs_scored' => $batsman_score->runs_scored,
                     'innings_no' => $inning_no,
+                    'is_boundary' => $batsman_score->is_boundary,
                 );
                 if ($this->matches_model->addBallByBall($ball) && $this->matches_model->addBatsmanScore($batsman)) {
                     $this->response(array(
