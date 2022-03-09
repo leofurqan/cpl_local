@@ -371,7 +371,6 @@ class Matches extends RestController
         }
     }
 
-
     public function live_matches_get()
     {
         $data["user_id"] = $this->input->get("user_id");
@@ -702,7 +701,7 @@ class Matches extends RestController
                 'non_facing_id' => $non_facing_id,
                 'bowler' => $bowler_id
             );
-            if ($this->matches_model->updateInnings($match_id, $inning_no , $innings)) {
+            if ($this->matches_model->updateInnings($match_id, $inning_no, $innings)) {
                 $this->response(array(
                     'status' => TRUE,
                     'message' => 'Innings started'
@@ -799,5 +798,58 @@ class Matches extends RestController
                 'message' => 'Invalid Request'
             ), 404);
         }
+    }
+
+    public function batsman_score_post()
+    {
+        $match_id = $this->input->get('match_id');
+        $inning_no = $this->input->get('inning_no');
+        $ball_by_ball = json_decode($this->input->post('ball_by_ball'));
+        $batsman_score = json_decode($this->input->post('batsman_score'));
+        if ($match_id != null && $inning_no != null && $ball_by_ball != null && $batsman_score != null) {
+            $inning_data = $this->matches_model->getInningByMatchInnings($match_id, $inning_no);
+            if ($inning_data != null) {
+                $ball = array(
+                    'match_id' => $match_id,
+                    'over_id' => $ball_by_ball->over_id,
+                    'ball_id' => $ball_by_ball->ball_id,
+                    'innings_no' => $inning_no,
+                    'team_batting' => $inning_data->batting_team,
+                    'team_bowling' => $inning_data->bowling_team,
+                    'striker' => $ball_by_ball->striker,
+                    'non_striker' => $ball_by_ball->non_striker,
+                    'bowler' => $ball_by_ball->bowler
+                );
+                $batsman = array(
+                    'match_id' => $match_id,
+                    'over_id' => $batsman_score->over_id,
+                    'ball_id' => $batsman_score->ball_id,
+                    'runs_scored' => $batsman_score->runs_scored,
+                    'innings_no' => $inning_no,
+                );
+                if ($this->matches_model->addBallByBall($ball) && $this->matches_model->addBatsmanScore($batsman)) {
+                    $this->response(array(
+                        'status' => TRUE,
+                        'message' => 'Score added'
+                    ), 200);
+                } else {
+                    $this->response(array(
+                        'status' => FALSE,
+                        'message' => 'Try Again Something Went Wrong'
+                    ), 200);
+                }
+            } else {
+                $this->response(array(
+                    'status' => FALSE,
+                    'message' => 'inning not found'
+                ), 200);
+            }
+        } else {
+            $this->response(array(
+                'status' => FALSE,
+                'message' => 'Data cannot be null'
+            ), 404);
+        }
+
     }
 }

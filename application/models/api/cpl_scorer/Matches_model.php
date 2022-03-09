@@ -194,12 +194,27 @@ class Matches_model extends CI_Model
 
     public function addInnings($innings)
     {
-        return $this->db->insert($this->table_innings , $innings);
+        return $this->db->insert($this->table_innings, $innings);
     }
 
     public function updateInnings($match_id, $inning_no, $innings)
     {
         return $this->db->where(array('match_id' => $match_id, 'innings_no' => $inning_no))
-            ->update($this->table_innings , $innings);
+            ->update($this->table_innings, $innings);
+    }
+
+    public function getInningByMatchInnings($match_id, $inning_no)
+    {
+        return $this->db->select('*')->from($this->table_innings)->where(array('match_id' => $match_id,'innings_no' => $inning_no))->get()->row();
+    }
+
+    public function addBallByBall($ball)
+    {
+        return $this->db->insert($this->table_ball_by_ball , $ball);
+    }
+
+    public function addBatsmanScore($batsman)
+    {
+        return $this->db->insert($this->table_batsman_score , $batsman);
     }
 }
