@@ -274,7 +274,7 @@ class Matches extends RestController
                             'facing_id' => 0,
                             'non_facing_id' => 0,
                             'bowler' => 0,
-                            'status' => 1,
+                            'status' => 0,
                         );
                         if ($this->matches_model->addInnings($innings)) {
                             $this->response(array(
@@ -296,7 +296,7 @@ class Matches extends RestController
                             'facing_id' => 0,
                             'non_facing_id' => 0,
                             'bowler' => 0,
-                            'status' => 1,
+                            'status' => 0,
                         );
                         if ($this->matches_model->addInnings($innings)) {
                             $this->response(array(
@@ -320,7 +320,7 @@ class Matches extends RestController
                             'facing_id' => 0,
                             'non_facing_id' => 0,
                             'bowler' => 0,
-                            'status' => 1,
+                            'status' => 0,
                         );
                         if ($this->matches_model->addInnings($innings)) {
                             $this->response(array(
@@ -342,7 +342,7 @@ class Matches extends RestController
                             'facing_id' => 0,
                             'non_facing_id' => 0,
                             'bowler' => 0,
-                            'status' => 1,
+                            'status' => 0,
                         );
                         if ($this->matches_model->addInnings($innings)) {
                             $this->response(array(
@@ -699,7 +699,8 @@ class Matches extends RestController
             $innings = array(
                 'facing_id' => $facing_id,
                 'non_facing_id' => $non_facing_id,
-                'bowler' => $bowler_id
+                'bowler' => $bowler_id,
+                'status' => 1
             );
             if ($this->matches_model->updateInnings($match_id, $inning_no, $innings)) {
                 $this->response(array(

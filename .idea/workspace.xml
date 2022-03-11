@@ -67,6 +67,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../keh_do" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -79,7 +80,10 @@
       <updated>1646643262639</updated>
       <workItem from="1646643265370" duration="2307000" />
       <workItem from="1646647628841" duration="5904000" />
-      <workItem from="1646801191378" duration="12647000" />
+      <workItem from="1646801191378" duration="17088000" />
+      <workItem from="1646890284929" duration="160000" />
+      <workItem from="1646892916323" duration="3077000" />
+      <workItem from="1646897733708" duration="1220000" />
     </task>
     <servers />
   </component>
